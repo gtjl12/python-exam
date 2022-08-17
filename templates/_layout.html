@@ -1,0 +1,66 @@
+{% spaceless %}
+    <!DOCTYPE html>
+    <html lang="zh">
+    <head>
+        <meta charset="UTF-8">
+        <title>{{ title }}</title>
+        <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
+        {% block css %}
+
+        {% endblock %}
+    </head>
+    <body>
+    {% block header %}
+        <nav class="navbar navbar-default">
+            <div class="container">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="#">学生管理系统</a>
+                </div>
+                <div class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav">
+                        <li>
+                            <a href="/administrator/list">管理员管理</a>
+                        </li>
+                        <li>
+                            <a href="/classes/list">班级管理</a>
+                        </li>
+                        <li>
+                            <a href="/student/list">学生管理</a>
+                        </li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            {% if request.session.info.username != None %}
+                                <a href="/login/out">
+                                    <span class="text-danger">退出登录</span>
+                                </a>
+                            {% endif %}
+                        </li>
+                        <li>
+                            <a href="#">
+                                {% if request.session.info.username != None %}
+                                    你好, {{ request.session.info.username }}!
+                                {% else %}
+                                    你好, 请登录!
+                                {% endif %}
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    {% endblock %}
+    {% block content %}
+
+    {% endblock %}
+    {% block footer %}
+
+    {% endblock %}
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    {% block js %}
+
+    {% endblock %}
+    </body>
+    </html>
+{% endspaceless %}

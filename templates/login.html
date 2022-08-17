@@ -1,0 +1,37 @@
+{% extends "_layout.html" %}
+
+{% block css %}
+    <style>
+        .login {
+            width: 400px;
+            border-radius: 4px;
+            border: 1px solid #95a5a6;
+            box-shadow: 4px 4px 16px #777777;
+            margin: 100px auto auto auto;
+            padding: 20px;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+    <div class="login">
+        <div class="text-center">
+            <h2>管理员登录</h2>
+        </div>
+        <form method="post" class="panel-body form-horizontal" novalidate>
+            {% csrf_token %}
+            {% for field in form %}
+                <div class="form-group">
+                    <div>
+                        <label for="id_{{ field.name }}">{{ field.label }}:</label>
+                        <span class="text-danger">{{ field.errors.0 }}</span>
+                        {{ field }}
+                    </div>
+                </div>
+            {% endfor %}
+            <div class="text-center">
+                <input type="submit" value="登录" class="btn btn-success">
+            </div>
+        </form>
+    </div>
+{% endblock %}
